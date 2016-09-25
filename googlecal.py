@@ -1,4 +1,4 @@
-import httplib2, os, re
+import httplib2, os, re, pyautogui, time
 
 from apiclient import discovery
 import oauth2client
@@ -18,6 +18,31 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
+
+def send_to_vendor(vendors, template):
+    a, b = pyautogui.locateCenterOnScreen('ring.PNG')
+    pyautogui.click(a, b)
+    time.sleep(0.25)
+
+    pyautogui.typewrite(vendors)
+    time.sleep(0.25)
+
+    a, b = pyautogui.locateCenterOnScreen('chat.PNG')
+    pyautogui.click(a, b)
+
+    pyautogui.typewrite(template)
+    time.sleep(0.25)
+
+    #pyautogui.press('enter')
+
+    a, b = pyautogui.locateCenterOnScreen('back.PNG')
+    pyautogui.click(a, b)
+
+    for i in range(len(vendors)):
+        pyautogui.press('delete')
+
+
+
 
 def convert_time_12h(time):
     time12 = time.split(sep=':')
@@ -110,7 +135,7 @@ def main():
                      ' you on social media. Let us know of any questions or concerns you might have. ' \
                      'Hope you have an epic day!'
 
-        print(vendors + '\n' + template)
+        print('\n'+ vendors + '\n' + template)
 
 
 main()
